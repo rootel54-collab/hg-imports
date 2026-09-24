@@ -12,10 +12,10 @@ export default async function Home(){
  const J=k=>{try{return JSON.parse(s[k]||'[]')}catch{return[]}}
  const pick=(k,auto)=>{const i=J(k);return i.length?i.map(id=>P.find(p=>p.id==id)).filter(Boolean):auto}
  const ig=J('insta_images')
+ const bg=s.hero_image?{background:`linear-gradient(180deg,rgba(5,8,22,.1) 0%,rgba(5,8,22,.88) 100%),url(${s.hero_image}) center/cover no-repeat`,minHeight:'75vh',display:'flex',alignItems:'flex-end'}:undefined
  return <>
-  {s.hero_image
-   ?<section style={{background:'#050816'}}><Image src={s.hero_image} alt={s.store_name} width={1536} height={1024} priority sizes="100vw" style={{width:'100%',height:'auto',maxWidth:1200,margin:'0 auto'}}/><div style={{textAlign:'center',padding:'18px 16px 28px'}}><Link className="btn" href="/catalogo">{s.hero_cta}</Link></div></section>
-   :<section className="hero"><div className="wrap"><h1>{s.hero_title}</h1><p>{s.hero_sub}</p><Link className="btn" href="/catalogo">{s.hero_cta}</Link></div></section>}
+  <section className="hero" style={bg}><div className="wrap">
+   <h1 style={s.hero_image?{fontSize:'clamp(26px,6vw,54px)'}:undefined}>{s.hero_title}</h1><p>{s.hero_sub}</p><Link className="btn" href="/catalogo">{s.hero_cta}</Link></div></section>
   <Sec t="Destaques" l={pick('home_destaques',P.filter(p=>p.is_featured))} href="/catalogo"/>
   <Sec t="Novidades" l={pick('home_novidades',P.filter(p=>p.is_new))} href="/catalogo?f=novo"/>
   {C.length>0&&<section className="wrap sec"><div className="sh"><h2>Categorias</h2></div><div className="cats">{C.map(c=><Link key={c.id} href={`/catalogo?c=${encodeURIComponent(c.name)}`} className="cat" style={c.image_url?{backgroundImage:`linear-gradient(#0000,#050816bb),url(${c.image_url})`}:undefined}>{c.name}</Link>)}</div></section>}
