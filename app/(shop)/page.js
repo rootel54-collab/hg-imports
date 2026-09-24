@@ -12,15 +12,18 @@ export default async function Home(){
  const J=k=>{try{return JSON.parse(s[k]||'[]')}catch{return[]}}
  const pick=(k,auto)=>{const i=J(k);return i.length?i.map(id=>P.find(p=>p.id==id)).filter(Boolean):auto}
  const ig=J('insta_images')
- const bg=s.hero_image?{background:`linear-gradient(180deg,rgba(5,8,22,.1) 0%,rgba(5,8,22,.88) 100%),url(${s.hero_image}) center/cover no-repeat`,minHeight:'75vh',display:'flex',alignItems:'flex-end'}:undefined
+ const hasImg=!!s.hero_image
  return <>
-<section className="hero" style={bg}><div className="wrap">
-   <h1 style={s.hero_image?{fontSize:'clamp(26px,6vw,54px)'}:undefined}>{s.hero_title}</h1><p>{s.hero_sub}</p><Link className="btn" href="/catalogo">{s.hero_cta}</Link></div></section><div className="wrap">
-   <h1 style={s.hero_image?{fontSize:'clamp(26px,6vw,54px)'}:undefined}>{s.hero_title}</h1><p>{s.hero_sub}</p><Link className="btn" href="/catalogo">{s.hero_cta}</Link></div></section>
+  {hasImg&&<section style={{background:'#050816'}}><Image src={s.hero_image} alt={s.store_name} width={1536} height={1024} priority sizes="100vw" style={{width:'100%',height:'auto',maxWidth:1200,margin:'0 auto'}}/></section>}
+  <section className="hero" style={hasImg?{padding:'28px 0 36px'}:undefined}><div className="wrap">
+   {s.hero_title&&<h1 style={hasImg?{fontSize:'clamp(24px,5.5vw,44px)'}:undefined}>{s.hero_title}</h1>}
+   {s.hero_sub&&<p>{s.hero_sub}</p>}
+   <Link className="btn" href="/catalogo">{s.hero_cta}</Link></div></section>
   <Sec t="Destaques" l={pick('home_destaques',P.filter(p=>p.is_featured))} href="/catalogo"/>
   <Sec t="Novidades" l={pick('home_novidades',P.filter(p=>p.is_new))} href="/catalogo?f=novo"/>
   {C.length>0&&<section className="wrap sec"><div className="sh"><h2>Categorias</h2></div><div className="cats">{C.map(c=><Link key={c.id} href={`/catalogo?c=${encodeURIComponent(c.name)}`} className="cat" style={c.image_url?{backgroundImage:`linear-gradient(#0000,#050816bb),url(${c.image_url})`}:undefined}>{c.name}</Link>)}</div></section>}
   <Sec t="Mais vendidos" l={pick('home_vendidos',P.filter(p=>p.is_bestseller))} href="/catalogo?f=vendidos"/>
   <Sec t="Promoções" l={pick('home_promo',P.filter(p=>pricing(p).on))} href="/catalogo?f=promo"/>
   <section className="insta"><h2>Siga a gente no Instagram</h2><p style={{marginBottom:22}}>{s.instagram_handle}</p>
-  {ig.length>0&&<div className="igrid">{ig.map(u=><a key={u} href={s.instagram} target="_blank" rel="noopener"><Image src={u} alt="Foto do Instagram" width={300} height={300} loading="lazy"/></a>)}</div>}<a className="btn" href={s.instagram} target="_blank" rel="noopener">SEGUIR NO INSTAGRAM</a></section></>}
+   {ig.length>0&&<div className="igrid">{ig.map(u=><a key={u} href={s.instagram} target="_blank" rel="noopener"><Image src={u} alt="Foto do Instagram" width={300} height={300} loading="lazy"/></a>)}</div>}
+   <a className="btn" href={s.instagram} target="_blank" rel="noopener">SEGUIR NO INSTAGRAM</a></section></>}
