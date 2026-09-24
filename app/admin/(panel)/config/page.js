@@ -1,7 +1,7 @@
 'use client'
 import {useEffect,useState} from 'react'
 import {sb,upload} from '@/lib/browser'
-const F=[['store_name','Nome da loja'],['whatsapp','WhatsApp (só números, com 55)'],['instagram','Link do Instagram'],['instagram_handle','@ do Instagram'],['address','Endereço'],['hours','Horários'],['footer_text','Texto do rodapé'],['hero_title','Título do banner'],['hero_sub','Subtítulo do banner'],['hero_cta','Texto do botão'],['color_primary','Cor principal (#hex)'],['color_accent','Cor de destaque (#hex)']]
+const F=[['store_name','Nome da loja'],['whatsapp','WhatsApp (só números, com 55)'],['instagram','Link do Instagram'],['instagram_handle','@ do Instagram'],['email','E-mail da loja'],,['address','Endereço'],['hours','Horários'],['footer_text','Texto do rodapé'],['hero_title','Título do banner'],['hero_sub','Subtítulo do banner'],['hero_cta','Texto do botão'],['color_primary','Cor principal (#hex)'],['color_accent','Cor de destaque (#hex)']]
 export default function Cfg(){
  const s=sb(),[v,setV]=useState({}),[m,setM]=useState('')
  useEffect(()=>{s.from('site_settings').select('*').then(({data})=>setV(Object.fromEntries((data||[]).map(r=>[r.key,r.value]))))},[])
