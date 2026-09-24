@@ -32,7 +32,7 @@ export function Store({s,children}){
   <main>{children}</main>
   <footer><div className="wrap fg">
    <div><Image src={s.logo_url} alt={s.store_name} width={1600} height={1362} style={{height:90,width:'auto'}}/><p>{s.footer_text}</p></div>
-   <div><b>Contato</b><p><a href={`https://wa.me/${s.whatsapp}`}>WhatsApp {fmtWa(s.whatsapp)}</a></p><p><a href={s.instagram} target="_blank" rel="noopener">Instagram {s.instagram_handle}</a></p>{s.address&&<p>{s.address}</p>}{s.hours&&<p>{s.hours}</p>}</div>
+   <div><b>Contato</b><p><a href={`https://wa.me/${s.whatsapp}`}>WhatsApp {fmtWa(s.whatsapp)}</a></p><p><a href={s.instagram} target="_blank" rel="noopener">Instagram {s.instagram_handle}</a></p>{s.email&&<p><a href={`mailto:${s.email}`}>E-mail {s.email}</a></p>}{s.address&&<p>{s.address}</p>}{s.hours&&<p>{s.hours}</p>}</div>
    <div><b>Links úteis</b><p><Link href="/catalogo">Catálogo</Link></p><p><Link href="/favoritos">Meus favoritos</Link></p><p><Link href="/carrinho">Carrinho</Link></p><p><Link href="/politica/privacidade">Política de privacidade</Link></p><p><Link href="/politica/termos">Termos de uso</Link></p></div>
   </div><p className="wrap" style={{marginTop:24}}>© {new Date().getFullYear()} {s.store_name}</p></footer>
   <a className="wafl" href={`https://wa.me/${s.whatsapp}`} target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
