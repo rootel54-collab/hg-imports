@@ -4,7 +4,7 @@ import {db,getSettings,PRODUCT_SELECT} from '@/lib/db'
 import {pricing} from '@/lib/util'
 import {Card} from '@/components/Card'
 export const revalidate=60
-const Sec=({t,l,href})=>l.length?<section className="wrap sec"><div className="sh"><h2>{t}</h2><Link href={href}>Ver tudo</Link></div><div className="grid">{l.slice(0,8).map(p=><Card key={p.id} p={p}/>)}</div></section>:null
+const Sec=({t,l,href})=>l.length?<section className="wrap sec"><div className="sh"><h2>{t}</h2><Link href={href}>Ver tudo</Link></div><div className="grid">{l.slice(0,100).map(p=><Card key={p.id} p={p}/>)}</div></section>:null
 export default async function Home(){
  const s=await getSettings(),d=db()
  const [a,b]=await Promise.all([d.from('products').select(PRODUCT_SELECT).eq('active',true).order('created_at',{ascending:false}),d.from('categories').select('*').order('position')])
