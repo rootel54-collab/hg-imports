@@ -1,4 +1,4 @@
-# DH store — loja Next.js + Supabase (PT-BR)
+# DH Store — loja Next.js + Supabase (PT-BR)
 ## Estrutura
 app/(shop) loja (home, catalogo, produto/[slug], carrinho, favoritos, politica) · app/admin (login + painel protegido) · components · lib · supabase/schema.sql · middleware.js (protege /admin)
 ## Variáveis de ambiente (.env.local e Vercel) — nenhuma é secreta

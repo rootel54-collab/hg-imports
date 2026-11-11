@@ -6,7 +6,7 @@ import {Card} from '@/components/Card'
 export const revalidate=60
 const get=async s=>(await db().from('products').select(PRODUCT_SELECT).eq('slug',s).eq('active',true).maybeSingle()).data
 export async function generateMetadata({params}){const p=await get(params.slug);if(!p)return{};const im=p.product_images[0]?.url
- return{title:`${p.name} | DH store`,description:(p.description||`Compre ${p.name} na DH store`).slice(0,155),alternates:{canonical:`/produto/${p.slug}`},openGraph:{title:p.name,images:im?[im]:[]}}}
+ return{title:`${p.name} | DH Store`,description:(p.description||`Compre ${p.name} na DH Store`).slice(0,155),alternates:{canonical:`/produto/${p.slug}`},openGraph:{title:p.name,images:im?[im]:[]}}}
 export default async function Page({params}){
  const p=await get(params.slug);if(!p)notFound()
  const pr=pricing(p),{data:sim}=await db().from('products').select(PRODUCT_SELECT).eq('active',true).eq('category_id',p.category_id||-1).neq('id',p.id).limit(4)
