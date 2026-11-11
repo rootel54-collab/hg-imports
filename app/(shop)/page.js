@@ -14,14 +14,14 @@ export default async function Home(){
  const ig=J('insta_images')
  const hasImg=!!s.hero_image
  return <>
-  {hasImg&&<section style={{background:'#052e16'}}><Image src={s.hero_image} alt={s.store_name} width={1536} height={1024} priority sizes="100vw" style={{width:'100%',height:'auto',maxWidth:1200,margin:'0 auto'}}/></section>}
+  {hasImg&&<section style={{background:'#050a06'}}><Image src={s.hero_image} alt={s.store_name} width={1536} height={1024} priority sizes="100vw" style={{width:'100%',height:'auto',maxWidth:1200,margin:'0 auto'}}/></section>}
   <section className="hero" style={hasImg?{padding:'28px 0 36px'}:undefined}><div className="wrap">
    {s.hero_title&&<h1 style={hasImg?{fontSize:'clamp(24px,5.5vw,44px)'}:undefined}>{s.hero_title}</h1>}
    {s.hero_sub&&<p>{s.hero_sub}</p>}
    <Link className="btn" href="/catalogo">{s.hero_cta}</Link></div></section>
   <Sec t="Destaques" l={pick('home_destaques',P.filter(p=>p.is_featured))} href="/catalogo"/>
   <Sec t="Novidades" l={pick('home_novidades',P.filter(p=>p.is_new))} href="/catalogo?f=novo"/>
-  {C.length>0&&<section className="wrap sec"><div className="sh"><h2>Categorias</h2></div><div className="cats">{C.map(c=><Link key={c.id} href={`/catalogo?c=${encodeURIComponent(c.name)}`} className="cat" style={c.image_url?{backgroundImage:`linear-gradient(#0000,#052e16bb),url(${c.image_url})`}:undefined}>{c.name}</Link>)}</div></section>}
+  {C.length>0&&<section className="wrap sec"><div className="sh"><h2>Categorias</h2></div><div className="cats">{C.map(c=><Link key={c.id} href={`/catalogo?c=${encodeURIComponent(c.name)}`} className="cat" style={c.image_url?{backgroundImage:`linear-gradient(#0000,#050a06bb),url(${c.image_url})`}:undefined}>{c.name}</Link>)}</div></section>}
   <Sec t="Mais vendidos" l={pick('home_vendidos',P.filter(p=>p.is_bestseller))} href="/catalogo?f=vendidos"/>
   <Sec t="Promoções" l={pick('home_promo',P.filter(p=>pricing(p).on))} href="/catalogo?f=promo"/>
   <section className="insta"><h2>Siga a gente no Instagram</h2><p style={{marginBottom:22}}>{s.instagram_handle}</p>
