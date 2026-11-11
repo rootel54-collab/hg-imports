@@ -12,4 +12,5 @@ export default function Pedidos(){
   {o.phone&&<p><a href={`https://wa.me/${o.phone.replace(/\D/g,'')}`} target="_blank" style={{color:'var(--blue)'}}>{o.phone}</a></p>}
   {o.address&&<p>📍 {o.address}</p>}
   {o.order_items.map(i=><p key={i.id} style={{fontSize:14}}>{i.qty}× {i.name} {i.size&&`(${i.size}`}{i.color&&`, ${i.color}`}{i.size&&')'} — {brl(i.price)}</p>)}
-  <p><b>Total: {brl(o.total)}</b></p><select value={o.status} onChange={async e=>{await s.from('orders').update({status:e.target.value}).eq('id',o.id);load()}}>{ST.map(x=><option key={x}>{x}</option>)}</select></div>)}{!l.length&&<p>Nenhum pedido ainda.</p>}</>}
+  <p><b>Total: {brl(o.total)}</b></p><select value={o.status} onChange={async e=>{await s.from('orders').update({status:e.target.value}).eq('id',o.id);load()}}>{ST.map(x=><option key={x}>{x}</option>)}</select>
+  <button type="button" onClick={async()=>{if(!confirm(`Excluir o pedido #${o.number}? Esta ação não pode ser desfeita.`))return;const {error}=await s.from('orders').delete().eq('id',o.id);if(error)return alert('Erro ao excluir: '+error.message);load()}} style={{marginTop:10,width:'100%',padding:'11px',border:'1px solid #e11d48',borderRadius:10,background:'none',color:'#e11d48',fontWeight:600,cursor:'pointer'}}>🗑️ Excluir pedido</button></div>)}{!l.length&&<p>Nenhum pedido ainda.</p>}</>}
