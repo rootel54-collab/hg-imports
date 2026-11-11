@@ -51,7 +51,7 @@ insert into storage.buckets(id,name,public) values('store','store',true) on conf
 create policy "store read" on storage.objects for select using(bucket_id='store');
 create policy "store admin" on storage.objects for all using(bucket_id='store' and is_admin()) with check(bucket_id='store' and is_admin());
 
-insert into site_settings values('store_name','DH store'),('whatsapp','5511947160883'),('instagram','https://www.instagram.com/hg.importsss/'),('instagram_handle','@hg.importsss'),('hero_title','Streetwear importado com atitude'),('hero_sub','Peças exclusivas, direto no seu WhatsApp.'),('hero_cta','COMPRAR AGORA');
+insert into site_settings values('store_name','DH store'),('email','dhstoree10@gmail.com'),('whatsapp','5511947160883'),('instagram','https://www.instagram.com/hg.importsss/'),('instagram_handle','@hg.importsss'),('hero_title','Streetwear importado com atitude'),('hero_sub','Peças exclusivas, direto no seu WhatsApp.'),('hero_cta','COMPRAR AGORA');
 
 -- Depois de criar seu usuário em Authentication > Users, torne-o admin:
 -- insert into admins select id from auth.users where email='SEU@EMAIL.COM';
