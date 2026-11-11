@@ -55,3 +55,6 @@ insert into site_settings values('store_name','DH Store'),('email','dhstoree10@g
 
 -- Depois de criar seu usuário em Authentication > Users, torne-o admin:
 -- insert into admins select id from auth.users where email='SEU@EMAIL.COM';
+
+-- Lixeira de pedidos (v3): marca pedidos excluídos sem apagá-los
+alter table orders add column if not exists deleted_at timestamptz;

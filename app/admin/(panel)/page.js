@@ -5,7 +5,7 @@ import {brl} from '@/lib/util'
 export default function Dash(){
  const [d,setD]=useState(null)
  useEffect(()=>{const s=sb();(async()=>{
-  const [p,o]=await Promise.all([s.from('products').select('id,sale_price,sale_end,product_variants(stock)'),s.from('orders').select('*,order_items(*)').order('created_at',{ascending:false})])
+  const [p,o]=await Promise.all([s.from('products').select('id,sale_price,sale_end,product_variants(stock)'),s.from('orders').select('*,order_items(*)').is('deleted_at',null).order('created_at',{ascending:false})])
   const P=p.data||[],O=o.data||[]
   setD({n:P.length,est:P.filter(x=>x.product_variants.some(v=>v.stock>0)).length,promo:P.filter(x=>x.sale_price!=null&&(!x.sale_end||new Date(x.sale_end)>Date.now())).length,o:O.length,v:O.filter(x=>x.status!='Cancelado').reduce((a,x)=>a+ +x.total,0),rec:O.slice(0,6)})})()},[])
  if(!d)return <p>Carregando…</p>
